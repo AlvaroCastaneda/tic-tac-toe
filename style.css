@@ -9,6 +9,7 @@
 html {
   font-family: "Permanent Marker", cursive;
   font-size: 62.5%;
+  color: #fff;
 }
 
 body {
@@ -30,7 +31,7 @@ body {
   background-color: transparent;
 }
 
-.topnav a {
+/* .topnav a {
   float: right;
   color: #f2f2f2;
   text-align: center;
@@ -42,36 +43,58 @@ body {
 .topnav a:hover {
   background-color: rgba(221, 221, 221, 0.2);
   color: black;
-}
-
-.topnav a.active {
-  background-color: #4caf50;
-  color: white;
-}
+} */
 
 .header {
   width: 100%;
-  margin: 0 auto 3.5rem auto;
+  margin: 0 auto 1.5rem auto;
 }
 
 h1 {
-  font-size: 10rem;
+  font-size: 8rem;
   text-align: center;
+  letter-spacing: 10px;
+
+  animation: moveInLeft 1s ease-out;
 }
 
 p {
-  font-size: 5rem;
+  font-size: 4rem;
   text-align: center;
+  letter-spacing: 10px;
+
+  animation: moveInRight 1s ease-out;
 }
 
 .choose {
   max-width: 600px;
-  margin: 5rem auto;
+  margin: .5rem auto;
   text-align: center;
 }
 
 button {
-    
+  font-family: inherit;
+  font-size: 1.6rem;
+  border: none;
+  border-radius: 5px;
+  margin: .5rem;
+  width: 30rem;
+  background: transparent;
+  padding: 1rem 0;
+  transition: all 0.2s;
+}
+
+button:hover {
+  background: #355664;
+  box-shadow: 10px 10px 14px -4px rgba(0, 0, 0, 0.75);
+  transform: translateY(-3px);
+  color:#fff;
+}
+
+button:active,
+button:focus {
+  outline: none;
+  transform: translateY(-1.5px);
 }
 
 .grid-container {
@@ -82,9 +105,11 @@ button {
   color: #fff;
   border: 6px solid #2c3e50;
   border-radius: 10px;
+  cursor: pointer;
 
   display: grid;
   grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+  animation: moveInBottom 1s ease-out;
 }
 
 .q {
@@ -107,6 +132,11 @@ button {
 }
 
 @media only screen and (max-width: 600px) {
+  .header {
+    width: 100%;
+    margin: 0;
+  }
+
   h1 {
     font-size: 5rem;
     text-align: center;
@@ -117,13 +147,63 @@ button {
     text-align: center;
   }
 
+  .choose {
+    margin: 1.5rem auto;
+  }
+
   .grid-container {
     width: 330px;
     height: 330px;
-    margin: 5rem auto;
+    margin: 2rem auto;
   }
 
   .q {
     font-size: 5em;
+  }
+}
+
+/*  Animations */
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem);
+  }
+
+  80% {
+    transform: translateX(1rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(10rem);
+  }
+
+  80% {
+    transform: translateX(-1rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(9rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
   }
 }

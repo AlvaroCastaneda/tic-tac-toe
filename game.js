@@ -13,10 +13,24 @@ var singlePlayer = false;
 const grid = () => Array.from(document.getElementsByClassName('q'));
 const qNumId = (qEl) => Number.parseInt(qEl.id.replace('q', ''));
 const emptyQs = () => grid().filter(_qEl => _qEl.innerText === '');
+const usedQs = () => grid().filter(_qEl => _qEl.innerText === 'X' || _qEl.innerText === 'O');
 const allSame = (arr) => arr.every(_qEl => _qEl.innerText === arr[0].innerText && _qEl.innerText !== '');
 
 const takeTurn = (index, letter) => grid()[index].innerText = letter;
 const opponentChoice = () => qNumId(emptyQs()[Math.floor(Math.random() * emptyQs().length)]);
+
+const single = () => singlePlayer = true;
+const multi = () => singlePlayer = false;
+
+const removeClass = () => {
+    const a = grid().filter(_qEl => _qEl.classList.contains('winner'));
+    a.forEach(_qEl => _qEl.classList.remove('winner'));
+}
+
+const resetBoard = () => {
+    usedQs().forEach(_qEl => _qEl.innerText = '');
+    removeClass();
+}
 
 const endGame = (winningSequence) => {
     winningSequence.forEach(_qEl => _qEl.classList.add('winner'));
@@ -32,30 +46,30 @@ const checkForVictory = () => {
         if (allSame(sequence)) {
             victory = true;
             endGame(sequence);
+            setTimeout(() => {
+                alert('Ahh pirro!!!')
+            }, 500);
         }
     });
     return victory;
 };
 
-const single = () => singlePlayer = true;
-const multi = () => singlePlayer = false;
-
 const clickFn = ($event) => {
-    takeTurn(qNumId($event.target), 'x');
-    if (!checkForVictory()){
-        if(singlePlayer){
+    takeTurn(qNumId($event.target), 'X');
+    if (!checkForVictory()) {
+        if (singlePlayer) {
             disableListeners();
             opponentTurn();
         } else {
             enableSecondPlayer();
             disableListeners();
-            secondPlayer();  
+            secondPlayer();
         }
-    }        
+    }
 };
 
-const secondPlayer = $evento => {
-    takeTurn(qNumId($evento.target), "O");
+const secondPlayer = ($event) => {
+    takeTurn(qNumId($event.target), "O");
     if (!checkForVictory()) {
         enableListeners();
         disableSecondPlayer();
@@ -66,7 +80,7 @@ const secondPlayer = $evento => {
 const opponentTurn = () => {
     disableListeners();
     setTimeout(() => {
-        takeTurn(opponentChoice(), 'o');
+        takeTurn(opponentChoice(), 'O');
         if (!checkForVictory())
             enableListeners();
     }, 700);
