@@ -25,10 +25,33 @@ body {
     #136a8a
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
+.topnav {
+  overflow: hidden;
+  background-color: transparent;
+}
+
+.topnav a {
+  float: right;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 1.4rem 1.6rem;
+  text-decoration: none;
+  font-size: 1.7rem;
+}
+
+.topnav a:hover {
+  background-color: rgba(221, 221, 221, 0.2);
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #4caf50;
+  color: white;
+}
 
 .header {
   width: 100%;
-  margin: 2.5rem auto;
+  margin: 0 auto 3.5rem auto;
 }
 
 h1 {
@@ -41,10 +64,20 @@ p {
   text-align: center;
 }
 
+.choose {
+  max-width: 600px;
+  margin: 5rem auto;
+  text-align: center;
+}
+
+button {
+    
+}
+
 .grid-container {
   width: 600px;
   height: 600px;
-  margin: 0 auto;
+  margin: 0 auto 2rem auto;
   background-color: #34495e;
   color: #fff;
   border: 6px solid #2c3e50;
@@ -70,7 +103,7 @@ p {
 }
 
 .winner {
-    color: #3b8a54;
+  color: #3b8a54;
 }
 
 @media only screen and (max-width: 600px) {
